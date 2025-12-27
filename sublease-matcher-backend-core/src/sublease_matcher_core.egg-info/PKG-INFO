@@ -1,0 +1,51 @@
+Metadata-Version: 2.4
+Name: sublease-matcher-core
+Version: 0.1.0
+Summary: Pure domain, ports, and services layer for Sublease Matcher.
+Author: Sublease Matcher Team
+Keywords: sublease,matcher,clean-architecture,domain-driven-design
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.12
+Classifier: License :: Other/Proprietary License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+
+# Sublease Matcher — Core
+
+Pure Python domain, ports, and service layer implementing clean architecture for the Sublease Matcher platform.
+
+## Layers
+- **domain/** — entities, value objects, enums.
+- **ports/** — repository, UoW, and match engine interfaces.
+- **services/** — pure coordination logic.
+- **factories/** — deterministic demo objects for testing.
+- **mappers/** — lightweight dict converters for adapters.
+
+## Install
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e .
+```
+
+## Verify Imports
+```bash
+PYTHONPATH=src python3 - <<'PY'
+from sublease_matcher.core import *
+from sublease_matcher.core.factories import make_demo_listing
+l = make_demo_listing()
+print("Core OK:", l.title, l.status)
+PY
+```
+
+## Quality
+```bash
+make fmt
+make lint
+make typecheck
+```
+
+## Notes
+- No frameworks, DB, or HTTP code allowed.
+- Compatible with FastAPI adapter via the API repo.
